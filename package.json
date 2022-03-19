@@ -1,0 +1,47 @@
+{
+  "name": "next-relay-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently 'yarn relay --watch' 'next dev'",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "relay": "relay-compiler",
+    "sync-schema": "scripts/sync-schema.sh"
+  },
+  "dependencies": {
+    "@artsy/palette": "^19.1.2",
+    "@types/styled-components": "4.0.3",
+    "graphql": "^16.3.0",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-relay": "^13.2.0",
+    "react-relay-network-modern": "^6.2.1",
+    "react-relay-network-modern-ssr": "^1.4.0",
+    "regenerator-runtime": "^0.13.9",
+    "relay-runtime": "^13.2.0",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.21",
+    "@types/react": "17.0.40",
+    "@types/react-relay": "^13.0.1",
+    "@types/relay-runtime": "^13.0.2",
+    "@types/styled-system": "5.1.9",
+    "concurrently": "^7.0.0",
+    "eslint": "8.11.0",
+    "eslint-config-next": "12.1.0",
+    "prettier": "^2.6.0",
+    "relay-compiler": "^13.2.0",
+    "typescript": "4.6.2"
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "es5"
+  }
+}
