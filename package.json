@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently 'yarn relay --watch' 'next dev'",
     "build": "next build",
-    "start": "next start",
+    "dev": "concurrently 'yarn relay --watch' 'next dev'",
     "lint": "next lint",
     "relay": "relay-compiler",
+    "start": "next start",
     "sync-schema": "scripts/sync-schema.sh"
   },
   "dependencies": {
@@ -19,7 +19,6 @@
     "react-dom": "17.0.2",
     "react-relay": "^13.2.0",
     "react-relay-network-modern": "^6.2.1",
-    "react-relay-network-modern-ssr": "^1.4.0",
     "regenerator-runtime": "^0.13.9",
     "relay-runtime": "^13.2.0",
     "styled-components": "^5.3.3"

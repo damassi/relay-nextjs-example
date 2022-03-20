@@ -1956,11 +1956,6 @@ react-lazy-load-image-component@1.5.0:
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
 
-react-relay-network-modern-ssr@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-relay-network-modern-ssr/-/react-relay-network-modern-ssr-1.4.0.tgz#a5e4b60e69e14769c7266a1a0f5002430c815fe1"
-  integrity sha512-sCIiwjzDPV9eBPOb7VcT/dmZkwrqcNpAK5eHkwjvC3Xw+RShtgB/uCSVgCUzMZpOR8iUSkzaceC/HMZdnKxF3w==
-
 react-relay-network-modern@^6.2.1:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/react-relay-network-modern/-/react-relay-network-modern-6.2.1.tgz#34e93110cf1bb0e666bffb00b513335c37950bc9"

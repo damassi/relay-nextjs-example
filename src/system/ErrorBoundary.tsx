@@ -14,11 +14,17 @@ export class ErrorBoundary extends React.Component<
   constructor(props: any) {
     super(props)
 
-    this.state = { hasError: false, error: null }
+    this.state = {
+      hasError: false,
+      error: null,
+    }
   }
 
   static getDerivedStateFromError(error: any) {
-    return { hasError: true, error }
+    return {
+      hasError: true,
+      error,
+    }
   }
 
   componentDidCatch(error: any, errorInfo: any) {
@@ -26,15 +32,17 @@ export class ErrorBoundary extends React.Component<
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError, error, children } = this.props
+
+    if (hasError) {
       return (
         <div>
           <h1>Something went wrong.</h1>
-          <pre>{this.state.error}</pre>
+          <pre>{error}</pre>
         </div>
       )
     }
 
-    return this.props.children
+    return children
   }
 }

@@ -1,17 +1,16 @@
 import "regenerator-runtime"
-
 import { RelayEnvironmentProvider } from "react-relay"
-import { createEnvironment } from "system/relay"
 import { Theme, injectGlobalStyles } from "@artsy/palette"
 import { AppProps } from "next/app"
 import { ErrorBoundary } from "system/ErrorBoundary"
 import { Suspense } from "react"
 import { isServer } from "system/env"
+import { useEnvironment } from "system/relay/setupEnvironment"
 
 const { GlobalStyles } = injectGlobalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
-  const environment = createEnvironment(pageProps.relayData)
+  const environment = useEnvironment(pageProps.relayData)
 
   return (
     <Theme theme="v3">
@@ -19,13 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <RelayEnvironmentProvider environment={environment}>
         <ErrorBoundary>
-          {isServer ? (
-            <Component {...pageProps} />
-          ) : (
-            <Suspense fallback={null}>
-              <Component {...pageProps} />
-            </Suspense>
-          )}
+          <Component {...pageProps} />
         </ErrorBoundary>
       </RelayEnvironmentProvider>
     </Theme>

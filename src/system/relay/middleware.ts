@@ -1,10 +1,9 @@
+import { isClient } from "system/env"
 import {
   cacheMiddleware,
   loggerMiddleware,
   urlMiddleware,
 } from "react-relay-network-modern"
-
-const isClient = typeof window !== "undefined"
 
 export const middleware: Array<any> = [
   urlMiddleware({

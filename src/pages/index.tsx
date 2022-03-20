@@ -1,45 +1,63 @@
-import { getRelayData } from "system/relay"
-import { useLazyLoadQuery } from "react-relay"
 import { graphql } from "relay-runtime"
 import { pagesQuery } from "__generated__/pagesQuery.graphql"
 import { Box, Text } from "@artsy/palette"
 import Link from "next/link"
+import { fetchRelayData } from "system/relay"
+import { GetServerSideProps } from "next"
+import { extractNodes } from "utils/extractNodes"
 
 interface HomeProps {
-  artist: pagesQuery["response"]["artist"]
+  artistsConnection: pagesQuery["response"]["artistsConnection"]
 }
 
-const APP_QUERY = graphql`
-  query pagesQuery {
-    artist(id: "andy-warhol") {
-      internalID
-      name
-    }
-  }
-`
+const Home: React.FC<HomeProps> = ({ artistsConnection }) => {
+  const nodes = extractNodes(artistsConnection)
 
-const Home: React.FC<HomeProps> = () => {
-  const { artist } = useLazyLoadQuery<pagesQuery>(APP_QUERY, {})
-
-  if (!artist) {
+  if (!nodes.length) {
     return null
   }
 
   return (
-    <Box m={1}>
-      <Text variant="xxl">{artist.name}</Text>
-      <Link href="/artist">Go to artist</Link>
-    </Box>
+    <>
+      {nodes.map((artist, index) => {
+        if (!artist.href) {
+          return null
+        }
+
+        return (
+          <Box m={1} key={index}>
+            <Link href={artist.href} passHref>
+              <Text variant="xxl" style={{ cursor: "pointer" }}>
+                {artist.name} {">"}
+              </Text>
+            </Link>
+          </Box>
+        )
+      })}
+    </>
   )
 }
 
-export async function getServerSideProps() {
-  const { relayData } = await getRelayData(APP_QUERY)
+export const getServerSideProps: GetServerSideProps = async () => {
+  const props = await fetchRelayData({
+    query: graphql`
+      query pagesQuery {
+        artistsConnection(first: 10, letter: "C") {
+          edges {
+            node {
+              internalID
+              name
+              href
+            }
+          }
+        }
+      }
+    `,
+    cache: true,
+  })
 
   return {
-    props: {
-      relayData,
-    },
+    props,
   }
 }
 
