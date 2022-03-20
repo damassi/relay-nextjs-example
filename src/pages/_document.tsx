@@ -31,6 +31,7 @@ export default class AppDocument extends Document {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
 
+    // Setup styled-components SSR
     try {
       ctx.renderPage = () =>
         originalRenderPage({
