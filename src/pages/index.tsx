@@ -4,14 +4,14 @@ import { Box, Text } from "@artsy/palette"
 import Link from "next/link"
 import { fetchRelayData } from "system/relay"
 import { GetServerSideProps } from "next"
-import { extractNodes } from "utils/extractNodes"
+import { useExtractNodes } from "hooks/useExtractNodes"
 
 interface HomeProps {
   artistsConnection: pagesQuery["response"]["artistsConnection"]
 }
 
 const Home: React.FC<HomeProps> = ({ artistsConnection }) => {
-  const nodes = extractNodes(artistsConnection)
+  const nodes = useExtractNodes(artistsConnection)
 
   if (!nodes.length) {
     return null

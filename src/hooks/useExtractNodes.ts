@@ -1,4 +1,4 @@
-export function extractNodes<Node extends object, T = Node>(
+export function useExtractNodes<Node extends object, T = Node>(
   connection:
     | {
         readonly edges?: ReadonlyArray<{
